@@ -5,4 +5,12 @@
             <version>0.1.0</version>
         </Aleron75_Magelog>
     </modules>
+
+    <global>
+        <models>
+            <aleron75_magelog>
+                <class>Aleron75_Magelog_Model</class>
+            </aleron75_magelog>
+        </models>
+    </global>
 </config>
