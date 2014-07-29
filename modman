@@ -1,3 +1,2 @@
 src/app/code/community/Aleron75/Magelog     app/code/community/Aleron75/Magelog
 src/app/etc/modules/*                       app/etc/modules/
-src/shell/*                                 shell/
