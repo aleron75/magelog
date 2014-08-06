@@ -46,8 +46,25 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
         parent::__construct($fileName);
     }
 
-    public function log($data = null)
+    /**
+     * Logs $data array; if log level and/or force log flag are not passed,
+     * internal initialized values are used.
+     *
+     * @param mixed $data
+     * @param int $logLevel
+     * @param boolean $forceLog
+     * @return $this|Mage_Core_Model_Log_Adapter
+     */
+    public function log($data = null, $logLevel = null, $forceLog = null)
     {
+        if (is_null($logLevel)) {
+            $logLevel = $this->_logLevel;
+        }
+
+        if (is_null($forceLog)) {
+            $forceLog = $this->_forceLog;
+        }
+
         if ($data === null) {
             $data = $this->_data;
         } else {
@@ -60,9 +77,9 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
 
         $this->_logger->log(
             $data,
-            $this->_logLevel,
+            $logLevel,
             $this->_logFileName,
-            $this->_forceLog
+            $forceLog
         );
 
         return $this;
@@ -73,5 +90,28 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
         $this->_logger->logException($e);
     }
 
+    /**
+     * @param int|mixed $logLevel
+     */
+    public function setLogLevel($logLevel)
+    {
+        $this->_logLevel = $logLevel;
+    }
+
+    /**
+     * @param string $forceLog
+     */
+    public function setForceLog($forceLog)
+    {
+        $this->_forceLog = $forceLog;
+    }
+
+    /**
+     * @param string $logFileName
+     */
+    public function setLogFileName($logFileName)
+    {
+        $this->_logFileName = $logFileName;
+    }
 
 }
