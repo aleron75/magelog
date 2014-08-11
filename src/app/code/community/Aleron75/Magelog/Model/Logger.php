@@ -90,6 +90,46 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
         $this->_logger->logException($e);
     }
 
+    public function debug($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::DEBUG, $forceLog);
+    }
+
+    public function info($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::INFO, $forceLog);
+    }
+
+    public function notice($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::NOTICE, $forceLog);
+    }
+
+    public function warn($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::WARN, $forceLog);
+    }
+
+    public function err($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::ERR, $forceLog);
+    }
+
+    public function crit($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::CRIT, $forceLog);
+    }
+
+    public function alert($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::ALERT, $forceLog);
+    }
+
+    public function emerg($data, $forceLog = null)
+    {
+        return $this->log($data, Zend_Log::EMERG, $forceLog);
+    }
+
     /**
      * @param int|mixed $logLevel
      */
