@@ -24,6 +24,13 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
     protected $_logger = null;
 
     /**
+     * Whether or not to prepend additional backtrace data
+     *
+     * @var bool
+     */
+    protected $_logAdditionalData = true;
+
+    /**
      * Constructor can be called either with a single parameter representing the
      * log file name or with an array, representing respectively:
      *
@@ -73,7 +80,28 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
             }
         }
         $data = $this->_filterDebugData($data);
-        $data['__pid'] = getmypid();
+
+        if ($this->_logAdditionalData)
+        {
+
+            $backtrace = debug_backtrace();
+            $loggerClassName = Mage::getConfig()->getModelClassName('aleron75_magelog/logger');
+            $className = '';
+            while (strcmp($className, $loggerClassName))
+            {
+                $backtraceData = array_pop($backtrace);
+                $className = $backtraceData['class'];
+            }
+            $additionalData = array(
+                '__pid' => getmypid(),
+                '__file' => $backtraceData['file'],
+                '__line' => $backtraceData['line'],
+                '__function' => $backtraceData['function'],
+                '__class' => $backtraceData['class'],
+            );
+
+            $data = $additionalData + $data;
+        }
 
         $this->_logger->log(
             $data,
@@ -152,6 +180,14 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
     public function setLogFileName($logFileName)
     {
         $this->_logFileName = $logFileName;
+    }
+
+    /**
+     * @param bool $logAdditionalData
+     */
+    public function setLogAdditionalData($logAdditionalData)
+    {
+        $this->_logAdditionalData = $logAdditionalData;
     }
 
 }
