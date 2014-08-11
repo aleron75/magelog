@@ -116,7 +116,7 @@ will produce the following output:
 )
 </pre>
 
-Passing an array with some data to obfuscate:
+Passing an array with some data to filter:
 
 <pre>
 $logger
@@ -133,7 +133,7 @@ will produce the following output:
 2014-08-11T15:59:25+00:00 INFO (6): Array
 (
     [__pid] => 14460
-    [__file] => /home/alessandro/NetBeansProjects/magedev/magento/__test.php
+    [__file] => /home/alessandro/NetBeansProjects/magedev/magento/logtest.php
     [__line] => 75
     [__function] => log
     [__class] => Aleron75_Magelog_Model_Logger
