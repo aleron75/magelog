@@ -68,6 +68,9 @@ After installation:
 
 Usage example
 -------------
+
+Passing a string:
+
 <pre>
 $logger = Mage::getModel(
     'aleron75_magelog/logger',
@@ -77,8 +80,45 @@ $logger = Mage::getModel(
         /* force log */ true)
 );
 $logger->log("Hello World");
-$logger->log("Hello Error", Zend_Log::ERR);
+</pre>
 
+will produce the following output:
+
+<pre>
+2014-08-11T15:59:25+00:00 INFO (6): Array
+(
+    [__pid] => 14460
+    [__file] => /home/alessandro/NetBeansProjects/magedev/magento/logtest.php
+    [__line] => 67
+    [__function] => log
+    [__class] => Aleron75_Magelog_Model_Logger
+    [0] => Hello World
+)
+</pre>
+
+Passing an error level different by the default one:
+
+<pre>
+$logger->log("Hello Error", Zend_Log::ERR);
+</pre>
+
+will produce the following output:
+
+<pre>
+2014-08-11T15:59:25+00:00 ERR (3): Array
+(
+    [__pid] => 14460
+    [__file] => /home/alessandro/NetBeansProjects/magedev/magento/logtest.php
+    [__line] => 68
+    [__function] => log
+    [__class] => Aleron75_Magelog_Model_Logger
+    [0] => Hello Error
+)
+</pre>
+
+Passing an array with some data to obfuscate:
+
+<pre>
 $logger
     ->setFilterDataKeys('password')
     ->log(array(
@@ -86,3 +126,22 @@ $logger
         'password' => 'admin123'
     ));
 </pre>
+
+will produce the following output:
+
+<pre>
+2014-08-11T15:59:25+00:00 INFO (6): Array
+(
+    [__pid] => 14460
+    [__file] => /home/alessandro/NetBeansProjects/magedev/magento/__test.php
+    [__line] => 75
+    [__function] => log
+    [__class] => Aleron75_Magelog_Model_Logger
+    [username] => aleron75
+    [password] => ****
+)
+</pre>
+
+**Note:** printing of the backtrace metadata identified by the keys starting
+with "__" can be disabled by calling the <code>setLogAdditionalData(false)</code>
+method on the logger object after its instantiation.
