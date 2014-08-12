@@ -19,7 +19,7 @@ the ```app``` folder, only merge its contents into existing directory;
 
 **Modman**
 
-To install modman Module Manager: https://github.com/colinmollenhour/modman
+Install modman Module Manager: https://github.com/colinmollenhour/modman
 
 After having installed modman on your system, you can clone this module on your
 Magento base directory by typing the following command:
@@ -31,12 +31,16 @@ $ modman clone git@github.com:aleron75/magelog.git
 
 **Composer**
 
+Install composer: http://getcomposer.org/download/
+
+Install Magento Composer: https://github.com/magento-hackathon/magento-composer-installer
+
 Add the dependency to your ```composer.json```:
 
 ```
 {
   ...
-  "require-dev": {
+  "require": {
     ...
     "aleron75/magelog": "dev-master",
     ...
@@ -53,10 +57,17 @@ Add the dependency to your ```composer.json```:
 }
 ```
 
-Then run the following command:
+Then run the following command from the directory where your ```composer.json```
+file is contained:
 
 ```
-$ composer update aleron75/magelog
+php composer.phar install
+```
+
+or
+
+```
+$ composer install
 ```
 
 **Common tasks**
