@@ -65,7 +65,7 @@ Then run the following command from the directory where your ```composer.json```
 file is contained:
 
 ```
-php composer.phar install
+$ php composer.phar install
 ```
 
 or
