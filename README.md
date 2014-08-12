@@ -54,6 +54,10 @@ Add the dependency to your ```composer.json```:
     ...
   ],
   ...
+  "extra": {
+    "magento-root-dir": "<magento_installation_dir>/"
+  }
+  ...
 }
 ```
 
