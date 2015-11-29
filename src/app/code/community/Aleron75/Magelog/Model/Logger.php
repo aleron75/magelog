@@ -119,7 +119,7 @@ class Aleron75_Magelog_Model_Logger extends Mage_Core_Model_Log_Adapter
     }
 
     /**
-     * Use to log informativedebug messages.
+     * Use to log debug messages.
      * 
      * Debugging messages bring extended information about application processing. 
      * Such messages usually report calls of important functions along with results they return 
